@@ -1,0 +1,441 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Emmanuel Villones · Data &amp; Business Analyst</title>
+  <meta name="description" content="Emmanuel Villones is an analyst for data, business and risk roles, with a BS in Mathematics and experience in finance and risk operations. SQL, Python, Excel, Power BI, Looker.">
+
+  <!-- Font: Schibsted Grotesk (free, from Google Fonts) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+
+  <style>
+    /* =========================================================
+       COLORS — change these few values to re-theme the whole site
+       ========================================================= */
+    :root {
+      --paper:  #F6F7FB;   /* page background            */
+      --surface:#FFFFFF;   /* raised areas               */
+      --ink:    #1B1F3B;   /* main text (deep indigo)    */
+      --muted:  #5B6178;   /* secondary text             */
+      --line:   #DDE1EC;   /* thin borders               */
+      --accent: #3A5BD9;   /* cobalt — links, "after" bars */
+      --before: #C3C9DA;   /* grey — "before" bars       */
+      --measure: 42rem;    /* max width of reading text  */
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --paper:  #12152A;
+        --surface:#191D36;
+        --ink:    #E8EAF4;
+        --muted:  #A3A9C2;
+        --line:   #2C3152;
+        --accent: #8EA2FF;
+        --before: #3E4466;
+      }
+    }
+
+    /* ---------- base ---------- */
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+    body {
+      margin: 0;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: "Schibsted Grotesk", system-ui, -apple-system, "Segoe UI", sans-serif;
+      font-size: 1.0625rem;
+      line-height: 1.6;
+      font-feature-settings: "tnum" 1;
+    }
+    a { color: var(--accent); text-underline-offset: .2em; text-decoration-thickness: 1px; }
+    a:hover { text-decoration-thickness: 2px; }
+    :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 2px; }
+    h1, h2, h3 { line-height: 1.15; margin: 0; font-weight: 600; letter-spacing: -0.01em; }
+    p { margin: 0 0 1em; }
+    ul { margin: 0; padding-left: 1.1em; }
+    li { margin-bottom: .35em; }
+
+    .wrap { max-width: 68rem; margin: 0 auto; padding: 0 1.25rem; }
+
+    /* ---------- header ---------- */
+    .site-header { border-bottom: 1px solid var(--line); }
+    .site-header .wrap {
+      display: flex; flex-wrap: wrap; gap: .5rem 1.5rem;
+      align-items: center; justify-content: space-between;
+      padding-top: 1rem; padding-bottom: 1rem;
+    }
+    .brand { font-weight: 700; color: var(--ink); text-decoration: none; }
+    .site-nav { display: flex; flex-wrap: wrap; gap: .25rem 1.25rem; }
+    .site-nav a { color: var(--muted); text-decoration: none; font-size: .95rem; }
+    .site-nav a:hover { color: var(--ink); }
+
+    /* ---------- sections ---------- */
+    section { padding: 4.5rem 0; border-bottom: 1px solid var(--line); }
+    section:last-of-type { border-bottom: 0; }
+    .section-head { display: grid; gap: .5rem; margin-bottom: 2.5rem; max-width: var(--measure); }
+    .section-head h2 { font-size: clamp(1.6rem, 3vw, 2rem); }
+    .section-head p { color: var(--muted); margin: 0; }
+
+    /* ---------- hero ---------- */
+    .hero { padding-top: 5.5rem; padding-bottom: 4.5rem; }
+    .hero h1 {
+      font-size: clamp(2.3rem, 6.2vw, 4.4rem);
+      font-weight: 600;
+      letter-spacing: -0.025em;
+      line-height: 1.04;
+      max-width: 15ch;
+      margin-bottom: 1.75rem;
+    }
+    .hero .intro { font-size: 1.2rem; color: var(--muted); max-width: 38rem; }
+    .hero .intro strong { color: var(--ink); font-weight: 600; }
+    .actions { display: flex; flex-wrap: wrap; gap: .75rem; margin-top: 2rem; }
+    .btn {
+      display: inline-block; padding: .7rem 1.2rem; border-radius: 6px;
+      font-weight: 600; font-size: .98rem; text-decoration: none;
+      border: 1px solid var(--ink); color: var(--ink);
+    }
+    .btn:hover { background: var(--surface); }
+    .btn.primary { background: var(--ink); color: var(--paper); }
+    .btn.primary:hover { opacity: .9; }
+    .avatar { display: block; width: 112px; height: 112px; border-radius: 50%; object-fit: cover; margin-bottom: 2rem; border: 1px solid var(--line); }
+
+    /* ---------- results (before/after bars) ---------- */
+    .results { display: grid; gap: 2.75rem; }
+    .result { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.25fr); gap: 1rem 3rem; align-items: start; }
+    .result h3 { font-size: 1.2rem; margin-bottom: .4rem; }
+    .result p { color: var(--muted); margin: 0; }
+    .bars { display: grid; gap: .6rem; }
+    .bar-row { display: grid; grid-template-columns: 3.5rem minmax(0, 1fr) 4.5rem; gap: .75rem; align-items: center; font-size: .92rem; }
+    .bar-row .label { color: var(--muted); }
+    .bar-row .value { text-align: right; font-weight: 600; }
+    .track { height: 1.25rem; background: transparent; }
+    .fill { height: 100%; width: var(--w); background: var(--before); border-radius: 0 3px 3px 0; transform-origin: left; }
+    .bar-row.after .fill { background: var(--accent); }
+    .result .change { color: var(--ink); font-size: 2.4rem; font-weight: 600; letter-spacing: -0.02em; line-height: 1; margin-top: .9rem; }
+    .result .change small { font-size: .9rem; font-weight: 400; color: var(--muted); letter-spacing: 0; margin-left: .4rem; }
+    .footnote { font-size: .85rem; color: var(--muted); margin-top: 2.5rem; max-width: var(--measure); }
+
+    /* the one animation on the page: bars grow when they scroll into view */
+    .js .fill { transform: scaleX(0); transition: transform 900ms cubic-bezier(.2,.7,.2,1); }
+    .js .bar-row.after .fill { transition-delay: 250ms; }
+    .js .result.seen .fill { transform: scaleX(1); }
+    @media (prefers-reduced-motion: reduce) { .js .fill { transform: none; transition: none; } }
+
+    /* ---------- projects ---------- */
+    .projects { display: grid; gap: 1.25rem; }
+    .project {
+      background: var(--surface); border: 1px solid var(--line); border-radius: 10px;
+      padding: 1.75rem; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.6fr); gap: 1rem 3rem;
+    }
+    .project.featured { border-color: var(--ink); }
+    .project h3 { font-size: 1.35rem; margin-bottom: .35rem; }
+    .project .meta { color: var(--muted); font-size: .92rem; margin: 0; }
+    .project .body p { margin-bottom: .9rem; }
+    .project figure { grid-column: 1 / -1; margin: .5rem 0 0; }
+    .project figure img { width: 100%; height: auto; border: 1px solid var(--line); border-radius: 6px; display: block; }
+    .tags { display: flex; flex-wrap: wrap; gap: .4rem; list-style: none; padding: 0; margin: .9rem 0 0; }
+    .tags li { margin: 0; font-size: .82rem; padding: .2rem .6rem; border-radius: 99px; border: 1px solid var(--line); color: var(--muted); }
+    .links { display: flex; flex-wrap: wrap; gap: .4rem 1.25rem; font-weight: 600; font-size: .95rem; }
+
+    /* ---------- experience (timeline) ---------- */
+    .timeline { list-style: none; padding: 0; margin: 0; max-width: 54rem; }
+    .job { display: grid; grid-template-columns: 11rem minmax(0, 1fr); gap: .5rem 2.5rem; padding: 1.75rem 0; border-top: 1px solid var(--line); margin: 0; }
+    .job:first-child { border-top: 0; padding-top: 0; }
+    .job .when { color: var(--muted); font-size: .92rem; padding-top: .2rem; }
+    .job h3 { font-size: 1.15rem; }
+    .job .org { color: var(--muted); margin: .15rem 0 .8rem; }
+    .job li { color: var(--ink); }
+
+    /* ---------- skills + education ---------- */
+    .two-col { display: grid; grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr)); gap: 2rem 3rem; }
+    .group h3 { font-size: 1rem; margin-bottom: .6rem; }
+    .group p { color: var(--muted); margin: 0; }
+    .edu { margin-top: 3.5rem; padding-top: 2rem; border-top: 1px solid var(--line); max-width: var(--measure); }
+    .edu h3 { font-size: 1.15rem; }
+    .edu p { color: var(--muted); margin: .25rem 0 0; }
+
+    /* ---------- contact ---------- */
+    .contact h2 { font-size: clamp(1.8rem, 4.5vw, 3rem); letter-spacing: -0.02em; max-width: 18ch; margin-bottom: 1.25rem; }
+    .contact .email { font-size: clamp(1.15rem, 3vw, 1.6rem); font-weight: 600; word-break: break-all; }
+    .contact .links { margin-top: 1.75rem; }
+    footer { padding: 2rem 0 3rem; color: var(--muted); font-size: .88rem; }
+
+    /* ---------- phones ---------- */
+    @media (max-width: 760px) {
+      section { padding: 3.25rem 0; }
+      .hero { padding-top: 3rem; padding-bottom: 3.25rem; }
+      .avatar { width: 88px; height: 88px; margin-bottom: 1.5rem; }
+      .result, .project, .job { grid-template-columns: 1fr; }
+      .project { padding: 1.35rem; }
+      .job { gap: .25rem; }
+    }
+  </style>
+</head>
+<body>
+  <script>document.documentElement.classList.add('js');</script>
+
+  <header class="site-header">
+    <div class="wrap">
+      <a class="brand" href="#top">Emmanuel Villones</a>
+      <nav class="site-nav" aria-label="Main">
+        <a href="#results">Results</a>
+        <a href="#projects">Projects</a>
+        <a href="#experience">Experience</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top">
+
+    <!-- ===================== HERO ===================== -->
+    <div class="wrap hero">
+      <img class="avatar" src="images/emmanuel.jpg" width="112" height="112" alt="Portrait of Emmanuel Villones">
+      <h1>I turn messy operational data into reports people can trust.</h1>
+      <p class="intro">
+        I'm <strong>Emmanuel Villones</strong>, an analyst with a BS in Mathematics (cum laude) and nearly
+        two years in finance and risk operations at Procter &amp; Gamble and Kambi. I work in SQL, Python,
+        Excel, Power BI and Looker.
+      </p>
+      <div class="actions">
+        <a class="btn primary" href="#projects">See my projects</a>
+        <a class="btn" href="resume.pdf" target="_blank" rel="noopener">Download resume (PDF)</a>
+      </div>
+    </div>
+
+    <!-- ===================== RESULTS ===================== -->
+    <section id="results">
+      <div class="wrap">
+        <div class="section-head">
+          <h2>Results from my work</h2>
+          <p>Three problems I measured, traced to the cause, and fixed.</p>
+        </div>
+
+        <div class="results">
+          <!-- Result 1 -->
+          <article class="result">
+            <div>
+              <h3>Fewer false alarms in a daily invoice check</h3>
+              <p>At P&amp;G, the Asia Pre-QA report kept flagging invoices that were fine. I traced the recurring flags to outdated validation logic in a KNIME workflow and rewrote it.</p>
+            </div>
+            <div>
+              <div class="bars" role="img" aria-label="Average daily false positives: 100 before, 12.5 after, indexed to 100">
+                <div class="bar-row"><span class="label">Before</span><div class="track"><div class="fill" style="--w:100%"></div></div><span class="value">100</span></div>
+                <div class="bar-row after"><span class="label">After</span><div class="track"><div class="fill" style="--w:12.5%"></div></div><span class="value">12.5</span></div>
+              </div>
+              <p class="change">−87.5%<small>daily false-positive rate</small></p>
+            </div>
+          </article>
+
+          <!-- Result 2 -->
+          <article class="result">
+            <div>
+              <h3>Fewer unnecessary escalations to Risk</h3>
+              <p>At Kambi, I analyzed historical JIRA tickets in Excel to find which Customer Service escalations didn't need Risk, then wrote and presented a response guide.</p>
+            </div>
+            <div>
+              <div class="bars" role="img" aria-label="Unnecessary escalations: 100 before, 33 after, indexed to 100">
+                <div class="bar-row"><span class="label">Before</span><div class="track"><div class="fill" style="--w:100%"></div></div><span class="value">100</span></div>
+                <div class="bar-row after"><span class="label">After</span><div class="track"><div class="fill" style="--w:33%"></div></div><span class="value">33</span></div>
+              </div>
+              <p class="change">−67%<small>unnecessary escalations</small></p>
+            </div>
+          </article>
+
+          <!-- Result 3 -->
+          <article class="result">
+            <div>
+              <h3>More clients covered by automated reporting</h3>
+              <p>At Kambi, I managed 180+ recurring financial and risk reports in Looker and set up Power Automate workflows so the reports reached more client accounts.</p>
+            </div>
+            <div>
+              <div class="bars" role="img" aria-label="Client accounts covered: 25 before, 30 after">
+                <div class="bar-row"><span class="label">Before</span><div class="track"><div class="fill" style="--w:83.3%"></div></div><span class="value">25</span></div>
+                <div class="bar-row after"><span class="label">After</span><div class="track"><div class="fill" style="--w:100%"></div></div><span class="value">30</span></div>
+              </div>
+              <p class="change">180+<small>recurring reports across 30 clients</small></p>
+            </div>
+          </article>
+        </div>
+
+        <p class="footnote">The first two charts are indexed to 100 at the starting point, because the underlying figures belong to the companies involved.</p>
+      </div>
+    </section>
+
+    <!-- ===================== PROJECTS ===================== -->
+    <section id="projects">
+      <div class="wrap">
+        <div class="section-head">
+          <h2>Projects</h2>
+          <p>End-to-end work: from raw data to a dashboard or a finding someone can act on.</p>
+        </div>
+
+        <div class="projects">
+
+          <!-- ===== PROJECT: Capstone (featured) ===== -->
+          <article class="project featured">
+            <div>
+              <h3>Time tracking and staffing dashboard, end to end</h3>
+              <p class="meta">Eskwelabs capstone, 2026</p>
+              <ul class="tags">
+                <li>Python</li><li>PostgreSQL</li><li>Power BI</li><li>Google Apps Script</li>
+              </ul>
+            </div>
+            <div class="body">
+              <p>Built a complete time tracking solution: Python to process the raw data, PostgreSQL to store it, Google Apps Script to automate reporting, and a Power BI dashboard that answers one question for staffing leads: are we meeting staffing demand?</p>
+              <p>The dashboard tracks timeslot and hour fulfillment rates, ranks projects and roles by staffing gap, shows each staff member's workload, and lists unassigned upcoming slots and data-quality exceptions to act on.</p>
+              <div class="links">
+                <a href="https://github.com/emmanuelvillones/time-tracking-capstone">View the code</a>
+                <a href="capstone-dashboard.pdf" target="_blank" rel="noopener">See all dashboard pages (PDF)</a>
+              </div>
+            </div>
+            <figure><img src="images/capstone-dashboard.jpg" width="1600" height="829" loading="lazy" alt="Overview page of the Power BI dashboard: fulfillment rate, staffing gap, monthly trend and gaps by project and role"></figure>
+          </article>
+
+          <!-- ⬇⬇⬇  PASTE NEW PROJECTS HERE  ⬇⬇⬇
+               Projects show in the order they appear on this page, so put your best one first.
+               See the "HOW TO ADD A PROJECT" template at the bottom of this section. -->
+
+
+          <!-- =====================================================
+               HOW TO ADD A PROJECT
+               1. Copy everything from <article class="project"> to </article> below.
+               2. Paste it at the "PASTE NEW PROJECTS HERE" line above.
+               3. Replace the text. Delete any link or line you don't need.
+               4. Screenshot: upload the image into the "images" folder and
+                  write its file name in the <figure> line. No screenshot? Delete that line.
+
+          <article class="project">
+            <div>
+              <h3>Project title in plain words</h3>
+              <p class="meta">Personal project, 2026</p>
+              <ul class="tags">
+                <li>SQL</li><li>Excel</li>
+              </ul>
+            </div>
+            <div class="body">
+              <p>One or two sentences: the question you answered, what you did, and what you found.</p>
+              <div class="links">
+                <a href="https://github.com/emmanuelvillones/REPO-NAME">View the code</a>
+                <a href="LINK-TO-DASHBOARD">See the dashboard</a>
+              </div>
+            </div>
+            <figure><img src="images/FILE-NAME.jpg" loading="lazy" alt="Describe what the screenshot shows"></figure>
+          </article>
+               ===================================================== -->
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== EXPERIENCE ===================== -->
+    <section id="experience">
+      <div class="wrap">
+        <div class="section-head">
+          <h2>Experience</h2>
+        </div>
+        <ol class="timeline" reversed>
+          <li class="job">
+            <p class="when">Jul – Sep 2026</p>
+            <div>
+              <h3>Data Analytics Bootcamp</h3>
+              <p class="org">Eskwelabs</p>
+              <ul>
+                <li>Capstone: an end-to-end time tracking solution in Python, PostgreSQL, Power BI and Google Apps Script.</li>
+              </ul>
+            </div>
+          </li>
+          <li class="job">
+            <p class="when">Mar – Jul 2026</p>
+            <div>
+              <h3>Finance &amp; Accounting Associate</h3>
+              <p class="org">Procter &amp; Gamble Philippines</p>
+              <ul>
+                <li>Cut the Asia Pre-QA report's daily false-positive rate by 87.5% by fixing outdated KNIME validation logic.</li>
+                <li>Owned the daily Pre-QA report as single point of contact, validating SAP invoice data and reporting results to AP teams and the department head.</li>
+                <li>Processed 100–150 vendor invoices a day in SAP with 100% QA accuracy.</li>
+              </ul>
+            </div>
+          </li>
+          <li class="job">
+            <p class="when">Nov 2024 – Feb 2026</p>
+            <div>
+              <h3>Risk Analyst</h3>
+              <p class="org">Kambi Philippines</p>
+              <ul>
+                <li>Managed 180+ recurring financial and risk reports across 30 client accounts in Looker, automated with Power Automate.</li>
+                <li>Analyzed 40–50 player accounts a day for betting patterns, anomalies and potential fraud.</li>
+                <li>Built 5 Excel KPI dashboards for ticket-handling performance, used in monthly and quarterly reviews.</li>
+                <li>Reduced unnecessary escalations to Risk by 67% with a data-driven response guide.</li>
+              </ul>
+            </div>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- ===================== SKILLS ===================== -->
+    <section id="skills">
+      <div class="wrap">
+        <div class="section-head">
+          <h2>Skills</h2>
+        </div>
+        <div class="two-col">
+          <div class="group">
+            <h3>Analysis and BI</h3>
+            <p>SQL, Python, Excel, Google Sheets, Power BI, Looker</p>
+          </div>
+          <div class="group">
+            <h3>Data and automation</h3>
+            <p>PostgreSQL, KNIME, Power Automate, Google Apps Script</p>
+          </div>
+          <div class="group">
+            <h3>Business systems</h3>
+            <p>SAP, JIRA and JQL, PowerPoint, Google Slides</p>
+          </div>
+          <div class="group">
+            <h3>How I work</h3>
+            <p>Root cause analysis, data validation and QA, process improvement, presenting findings to non-technical teams</p>
+          </div>
+        </div>
+
+        <div class="edu">
+          <h3>BS Mathematics, cum laude</h3>
+          <p>Batangas State University, The National Engineering University, 2024. GWA 1.33.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== CONTACT ===================== -->
+    <section id="contact" class="contact">
+      <div class="wrap">
+        <h2>Let's turn your data into decisions.</h2>
+        <a class="email" href="mailto:emmanuelvillones25@gmail.com">emmanuelvillones25@gmail.com</a>
+        <div class="links">
+          <a href="https://www.linkedin.com/in/emmanuel-villones-5420262a6/">LinkedIn</a>
+          <a href="https://github.com/emmanuelvillones">GitHub</a>
+          <a href="resume.pdf" target="_blank" rel="noopener">Resume (PDF)</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">© 2026 Emmanuel Villones</div>
+  </footer>
+
+  <script>
+    // Grow the result bars when they scroll into view (the only animation on the page)
+    (function () {
+      var items = document.querySelectorAll('.result');
+      if (!('IntersectionObserver' in window)) { items.forEach(function (el) { el.classList.add('seen'); }); return; }
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('seen'); io.unobserve(e.target); } });
+      }, { threshold: 0.4 });
+      items.forEach(function (el) { io.observe(el); });
+    })();
+  </script>
+</body>
+</html>
