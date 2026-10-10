@@ -98,7 +98,6 @@
     .btn:hover { background: var(--surface); }
     .btn.primary { background: var(--ink); color: var(--paper); }
     .btn.primary:hover { opacity: .9; }
-    .avatar { display: block; width: 112px; height: 112px; border-radius: 50%; object-fit: cover; margin-bottom: 2rem; border: 1px solid var(--line); }
 
     /* ---------- results (before/after bars) ---------- */
     .results { display: grid; gap: 2.75rem; }
@@ -166,10 +165,17 @@
     @media (max-width: 760px) {
       section { padding: 3.25rem 0; }
       .hero { padding-top: 3rem; padding-bottom: 3.25rem; }
-      .avatar { width: 88px; height: 88px; margin-bottom: 1.5rem; }
       .result, .project, .job { grid-template-columns: 1fr; }
       .project { padding: 1.35rem; }
       .job { gap: .25rem; }
+    }
+
+    /* hero with portrait on the right */
+    .hero-split { display: grid; grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr); gap: 3rem 4rem; align-items: center; }
+    .portrait { width: 100%; max-width: 360px; height: auto; aspect-ratio: 4 / 5; object-fit: cover; border-radius: 14px; justify-self: end; }
+    @media (max-width: 760px) {
+      .hero-split { grid-template-columns: 1fr; }
+      .portrait { order: -1; justify-self: start; max-width: 220px; }
     }
   </style>
 </head>
@@ -191,18 +197,20 @@
   <main id="top">
 
     <!-- ===================== HERO ===================== -->
-    <div class="wrap hero">
-      <img class="avatar" src="images/emmanuel.jpg" width="112" height="112" alt="Portrait of Emmanuel Villones">
-      <h1>I turn messy operational data into reports people can trust.</h1>
-      <p class="intro">
+    <div class="wrap hero hero-split">
+      <div class="hero-text">
+        <h1>I turn messy operational data into reports people can trust.</h1>
+        <p class="intro">
         I'm <strong>Emmanuel Villones</strong>, an analyst with a BS in Mathematics (cum laude) and nearly
         two years in finance and risk operations at Procter &amp; Gamble and Kambi. I work in SQL, Python,
         Excel, Power BI and Looker.
-      </p>
-      <div class="actions">
+        </p>
+        <div class="actions">
         <a class="btn primary" href="#projects">See my projects</a>
         <a class="btn" href="resume.pdf" target="_blank" rel="noopener">Download resume (PDF)</a>
       </div>
+      </div>
+      <img class="portrait" src="images/emmanuel-portrait.jpg" width="760" height="950" alt="Portrait of Emmanuel Villones">
     </div>
 
     <!-- ===================== RESULTS ===================== -->
