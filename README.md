@@ -2,7 +2,7 @@
 
 My personal portfolio website, live at **https://emmanuelvillones.github.io**
 
-I'm an analyst with a BS in Mathematics and experience in finance and risk operations, open to data, business and risk analyst roles. I work with SQL, Python, Excel, Power BI and Looker.
+I'm an analyst with a BS in Mathematics and experience in finance and risk operations, open to data related roles. I work with SQL, Python, Excel, Power BI and Looker.
 
 ## What's in this repository
 
