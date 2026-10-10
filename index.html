@@ -47,7 +47,6 @@
       font-family: "Schibsted Grotesk", system-ui, -apple-system, "Segoe UI", sans-serif;
       font-size: 1.0625rem;
       line-height: 1.6;
-      font-feature-settings: "tnum" 1;
     }
     a { color: var(--accent); text-underline-offset: .2em; text-decoration-thickness: 1px; }
     a:hover { text-decoration-thickness: 2px; }
@@ -111,6 +110,7 @@
     .bar-row .label { color: var(--muted); }
     .bar-row .value { text-align: right; font-weight: 600; }
     .track { height: 1.25rem; background: transparent; }
+    .bar-row .value, .result .change { font-variant-numeric: tabular-nums; }
     .fill { height: 100%; width: var(--w); background: var(--before); border-radius: 0 3px 3px 0; transform-origin: left; }
     .bar-row.after .fill { background: var(--accent); }
     .result .change { color: var(--ink); font-size: 2.4rem; font-weight: 600; letter-spacing: -0.02em; line-height: 1; margin-top: .9rem; }
